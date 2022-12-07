@@ -6,7 +6,7 @@ function App() {
 
   return (
     <div className='bg-teal-50 w-full h-48'>
-      <h2>gggg</h2>
+      <h2>Client Dashboard 2</h2>
     </div>
   )
 }
