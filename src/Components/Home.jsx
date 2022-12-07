@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Airtable from "airtable";
 import TaskCard from "./TaskCard";
 
-const base = new Airtable({ apiKey: 'keydxzcJdUXUCRGYy' }).base('appsc6BvDzAQRtjc2')
+const base = new Airtable({ apiKey: import.meta.env.VITE_API_KEY }).base(import.meta.env.VITE_BASE_ID)
 
 
 const Home = () => {
@@ -16,7 +16,7 @@ const Home = () => {
                 // filterByFormula: `{status}='Todo'`,
             })
             .eachPage((records, fetchNextPage) => {
-                console.log(records)
+                //console.log(records)
                 setTasks(records);
                 fetchNextPage();
             });
