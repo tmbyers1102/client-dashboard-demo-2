@@ -13,7 +13,7 @@ function App() {
   return (
     <div className='bg-teal-700 w-full h-screen'>
       <h2>Client Dashboard 2</h2>
-      <h2>{import.meta.env.VITE_SOME_KEY}</h2>
+      <h2>Here is the env key: {import.meta.env.VITE_SOME_KEY}</h2>
       <Home />
     </div>
   )
