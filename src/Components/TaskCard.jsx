@@ -9,6 +9,7 @@ const TaskCard = ({task}) => {
 
                 <div className="bg-teal-600 h-48 rounded-lg p-3 hover:bg-teal-500">
                     <h2 className="m-3 h-24 text-sm">{task.fields.Name}</h2>
+                    <h2 className="m-3 h-24 text-sm">{task.fields.Status}</h2>
                     <div className="flex">
                         <DeleteButton taskID={taskId} />
                     </div>

@@ -7,33 +7,43 @@ const base = new Airtable({ apiKey: import.meta.env.VITE_API_KEY }).base(import.
 function CreateTask() {
     const nameRef = useRef();
     const dueDateRef = useRef();
-    // const statusRef = useRef();
+    const scheduledStartRef = useRef();
+    const scheduledEndRef = useRef();
+    const statusRef = useRef();
     // const clientVisibleRef = useRef();
     // const newClientRef = useRef();
+    const notesRef = useRef();
+
 
     const createTask = (e) => {
         e.preventDefault();
         const Name = nameRef.current.value;
         const due_date = dueDateRef.current.value;
+        const scheduled_start = scheduledStartRef.current.value;
+        const scheduled_end = scheduledEndRef.current.value;
         // const Status = statusRef.current.value;
-        // const client_visible = clientVisibleRef.current.value;
-        // const new_client = newClientRef.current.value;
+        const Status = "Todo";
+        const client_visible = true;
+        const new_client = ["reca1BIsqZ4IMpsHY"];
+        const Notes = notesRef.current.value;
+        const send_to_calendar = false;
 
         base('Tasks').create(
-            { Name, due_date },
+            { Name, due_date, scheduled_start, scheduled_end, Status, new_client, client_visible, send_to_calendar },
             function(err, record) {
                 if (err) {
                     console.error(err);
+                    console.log(notesRef.current.value);
                     return;
                 }
                 prompt('Created record', record.getId());
             });
     };
     return (
-        <div class="w-full max-w-xs">
-            <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <div class="w-full">
+            <form class="bg-white border-2 border-full border-blue-600 shadow-xl rounded px-8 pt-6 pb-8 mb-4">
                 <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                    <label class="block text-gray-700 text-sm font-bold mb-2  text-start" for="username">
                         Name
                     </label>
                     <input
@@ -45,16 +55,60 @@ function CreateTask() {
                     ></input>
                 </div>
                 <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                        Due Date 2022-12-25
+                    <label class="block text-gray-700 text-sm font-bold mb-2 text-start" for="username">
+                        Notes
                     </label>
-                    <input
+                    <textarea
+                        name="Text1"
+                        cols="60" rows="2" 
+                        className="border border-full rounded shadow w-full p-3"
+                        ref={notesRef}
+                        />
+                    {/* <input
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id="username"
-                        type="date"
-                        placeholder="Task Due Date"
-                        ref={dueDateRef}
-                    ></input>
+                        type="textarea"
+                        placeholder="1 or 0"
+                        ref={clientVisibleRef}
+                    ></input> */}
+                </div>
+                <div className="flex w-full justify-around gap-2">
+                    <div class="mb-4 w-full">
+                        <label class="block text-gray-700 text-sm font-bold mb-2 text-start" for="username">
+                            Due Date
+                        </label>
+                        <input
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="username"
+                            type="date"
+                            placeholder="Task Due Date"
+                            ref={dueDateRef}
+                        ></input>
+                    </div>
+                    <div class="mb-4 w-full">
+                        <label class="block text-gray-700 text-sm font-bold mb-2 text-start" for="username">
+                            Scheduled Start
+                        </label>
+                        <input
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="username"
+                            type="datetime-local"
+                            placeholder="Task Due Date"
+                            ref={scheduledStartRef}
+                        ></input>
+                    </div>
+                    <div class="mb-4 w-full">
+                        <label class="block text-gray-700 text-sm font-bold mb-2 text-start" for="username">
+                            Scheduled End
+                        </label>
+                        <input
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="username"
+                            type="datetime-local"
+                            placeholder="Task Due Date"
+                            ref={scheduledEndRef}
+                        ></input>
+                    </div>
                 </div>
                 {/* <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
@@ -93,7 +147,7 @@ function CreateTask() {
                         </span>
                     </label>
                 </div> */}
-                                {/* <div class="mb-4">
+                {/* <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
                         Client reca1BIsqZ4IMpsHY
                     </label>
@@ -105,9 +159,9 @@ function CreateTask() {
                         ref={newClientRef}
                     ></input>
                 </div> */}
-                <div class="flex items-center justify-between">
+                <div class="flex items-center justify-center">
                     <button
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        class="bg-blue-500 hover:bg-blue-700 text-white w-1/2 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         type="submit"
                         onClick={createTask}
                     >
@@ -115,9 +169,6 @@ function CreateTask() {
                     </button>
                 </div>
             </form>
-            <p class="text-center text-gray-500 text-xs">
-                &copy;2020 Acme Corp. All rights reserved.
-            </p>
         </div>
     );
 }

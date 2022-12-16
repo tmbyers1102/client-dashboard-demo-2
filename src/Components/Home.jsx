@@ -26,9 +26,14 @@ const Home = () => {
 
     return (
         <>
-            <CreateTask />
+                <h1 className='text-2xl font-bold'>Create Task</h1>
+            <div className='flex justify-center p-3'>
+                <CreateTask />
+            </div>
             <div className="grid grid-cols-6 items-center justify-center m-3 gap-4 flex">
-                <CreateButton />
+                <div className='flex justify-center w-full'>
+                    <CreateButton />
+                </div>
                 {tasks.map((task) => (
                             <TaskCard
                                 key={task.id}
