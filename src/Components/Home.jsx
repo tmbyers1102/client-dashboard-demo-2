@@ -30,7 +30,7 @@ const Home = () => {
             <div className='flex justify-center p-3'>
                 <CreateTask />
             </div>
-            <div className="grid grid-cols-6 items-center justify-center m-3 gap-4 flex">
+            {/* <div className="grid grid-cols-4 items-center justify-center m-3 gap-4 flex">
                 <div className='flex justify-center w-full'>
                     <CreateButton />
                 </div>
@@ -40,7 +40,7 @@ const Home = () => {
                                 task={task}
                             />
                         ))}
-            </div>
+            </div> */}
         </>
     )
 };

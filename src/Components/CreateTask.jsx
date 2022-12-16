@@ -26,7 +26,7 @@ function CreateTask() {
         const client_visible = true;
         const new_client = ["reca1BIsqZ4IMpsHY"];
         const Notes = notesRef.current.value;
-        const send_to_calendar = false;
+        const send_to_calendar = true;
 
         base('Tasks').create(
             { Name, due_date, scheduled_start, scheduled_end, Status, new_client, client_visible, send_to_calendar },
@@ -72,7 +72,7 @@ function CreateTask() {
                         ref={clientVisibleRef}
                     ></input> */}
                 </div>
-                <div className="flex w-full justify-around gap-2">
+                <div className="md:flex w-full justify-around gap-2">
                     <div class="mb-4 w-full">
                         <label class="block text-gray-700 text-sm font-bold mb-2 text-start" for="username">
                             Due Date

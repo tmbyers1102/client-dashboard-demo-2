@@ -6,13 +6,12 @@ const TaskCard = ({task}) => {
 
     return (
         <div className="col-span-1">
-
-                <div className="bg-teal-600 h-48 rounded-lg p-3 hover:bg-teal-500">
-                    <h2 className="m-3 h-24 text-sm">{task.fields.Name}</h2>
-                    <h2 className="m-3 h-24 text-sm">{task.fields.Status}</h2>
-                    <div className="flex">
+                <div className="border border-teal-600 h-24 rounded-lg p-1 text-xs hover:bg-teal-500">
+                    <h2 className="m-3">Name: {task.fields.Name}</h2>
+                    <p className="m-3">Status: {task.fields.Status}</p>
+                    {/* <div className="flex">
                         <DeleteButton taskID={taskId} />
-                    </div>
+                    </div> */}
                 </div>
         </div>
     )
